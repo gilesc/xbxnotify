@@ -71,16 +71,18 @@
         (prn "Need all three of: sms-address, gmail-address, and gmail-password to do SMS notifications.")
         (throw (Exception.))))
     (loop [friends {:online []}]
-      (let [new-friends (parse-friends (.refresh page))
+      (.refresh page)
+      (Thread/sleep 5000)
+      (let [new-friends (parse-friends page)
             [old-tags new-tags] (map #(set (map :tag (:online %)))
                                      [friends new-friends])
             logged-on (difference new-tags old-tags)
             logged-off (difference old-tags new-tags)
             msg (case (count logged-on)
                       0 nil
-                      1 (str (first logged-on " has logged on."))
+                      1 (str (first logged-on) " has logged on.")
                       (str (string/join " and " logged-on)
-                           " have logged on"))]
+                           " have logged on."))]
         (if msg
           (do
             (prn msg)
