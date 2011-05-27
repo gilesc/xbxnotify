@@ -89,4 +89,5 @@
                      (concat
                       (map params [:sms-address :gmail-address :gmail-password])
                       [msg])))))
-        (Thread/sleep (* 1000 500))))))
+        (Thread/sleep (* 1000 500))
+        (recur new-friends)))))
