@@ -1,0 +1,43 @@
+# xbxnotify
+
+This utility uses your XBox and GMail credentials to monitor XBox Live for friends logging on, and then sends an e-mail to a target e-mail address whenever a friend logs on.  This is especially useful in conjunction with some cell phone providers, such as AT&T, that will redirect e-mails sent to a specific address (e.g., 123456789@txt.att.net) to SMS.
+
+## Usage
+
+To build: 
+1. Install leiningen from: https://github.com/technomancy/leiningen
+2. Enter the project directory and run "lein deps", then "lein uberjar"
+
+To run:
+(for best results, download a release version that contains a pre-built JAR)
+./xbxnotify.sh OR xboxnotify.bat
+
+with ALL of the following arguments:
+-u or --xbox-email <- your XBox Live e-mail account
+-p or --xbox-password <- your XBox Live password
+-s or --sms-address <- the target e-mail address you want notifications sent to
+-g or --gmail-address <- your GMail address
+-gp or --gmail-password <- your GMail password
+
+therefore a complete command might look like:
+./xbxnotify.sh -u "me@msn.com" -p "mypwd" -s "123456@txt.att.net" -g "me@gmail.com" -gp "mypwd"
+
+When you see a bunch of noisy error-looking messages, that means it's working (will be fixed in later versions).
+
+By default the client checks for new friends every 500 seconds.  In later versions, this parameter will be configurable.
+
+TODO:
+-Make refresh time configurable
+-Suppress ugly warnings by one of the Java libraries (HttpUnit)
+-Build a GUI (like XBList, but cross-platform)
+
+Comments/suggestions/feature requests welcome!
+
+## License / Legal
+
+All trademarks and rights regarding XBox are owned by Microsoft. Thanks for building a cool gaming platform!
+
+Copyright (C) 2011 Cory Giles
+
+Distributed under the Eclipse Public License.
+
